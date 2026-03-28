@@ -2,36 +2,94 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>KScript.gg | Next Gen Roblox Scripts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KScript.gg | Elite Scripting Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300&display=swap" rel="stylesheet">
     <style>
-        body { background: #0f0c29; color: white; font-family: 'Poppins', sans-serif; text-align: center; margin: 0; }
-        .hero { padding: 100px 20px; background: linear-gradient(to bottom, #12c2e9, #c471ed, #f64f59); }
-        .btn { background: #fff; color: #f64f59; padding: 20px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
-        .btn:hover { background: #222; color: #fff; box-shadow: 0 0 20px #fff; }
-        .container { padding: 50px; display: flex; justify-content: center; gap: 20px; }
-        .card { background: #1a1a2e; padding: 20px; border-radius: 15px; border: 1px solid #333; width: 300px; }
-        code { background: #000; color: #00ff00; padding: 5px; display: block; margin-top: 10px; border-radius: 5px; }
+        body {
+            background-color: #05050a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Arka planda yavaşça dönen bir ışık efekti */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, rgba(112, 0, 255, 0.05) 100%);
+            filter: blur(80px);
+            animation: move 10s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes move {
+            from { transform: translate(-50%, -50%); }
+            to { transform: translate(10%, 20%); }
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #00f2ff, #7000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .slogan {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .coming-soon {
+            margin-top: 40px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #00f2ff;
+        }
+
+        .discord-btn {
+            margin-top: 30px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .discord-btn:hover { opacity: 1; color: #5865F2; }
+
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>KSCRIPT.GG</h1>
-        <p>En Hızlı ve Güvenli Roblox Scriptleri Burada!</p>
-        <br><br>
-        <a href="#" class="btn">DOWNLOAD EXECUTOR</a>
+
+    <div class="glow"></div>
+
+    <div>
+        <div class="logo">KSCRIPT.GG</div>
+        <div class="slogan">Next Generation Experience</div>
+        
+        <div class="coming-soon">
+            🚀 Sistemler Hazırlanıyor...
+        </div>
+
+        <a href="#" class="discord-btn">Join Our Discord</a>
     </div>
 
-    <div class="container">
-        <div class="card">
-            <h3>Blox Fruits Script</h3>
-            <p>Auto Farm & Sea Events</p>
-            <code>_G.AutoFarm = true;</code>
-        </div>
-        <div class="card">
-            <h3>Pet Simulator 99</h3>
-            <p>Fast Hatch & Collect</p>
-            <code>loadstring(game:HttpGet(...))()</code>
-        </div>
-    </div>
 </body>
 </html>
