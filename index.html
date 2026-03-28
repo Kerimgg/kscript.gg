@@ -4,94 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KScript.gg | Elite Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #05050a;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-        }
+        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #05050a; }
+        body { background-color: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; overflow: hidden; }
+        .glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%); filter: blur(120px); z-index: -1; }
+        
+        /* Ana Sayfa */
+        .logo { font-family: 'Orbitron', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: bold; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 242, 255, 0.3); margin-bottom: 40px; }
+        .btn-container { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .nav-btn { width: 250px; padding: 15px; border: 1px solid rgba(0, 242, 255, 0.3); background: rgba(255, 255, 255, 0.03); color: white; text-decoration: none; border-radius: 8px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 2px; transition: 0.3s; backdrop-filter: blur(5px); cursor: pointer; }
+        .nav-btn:hover { background: rgba(0, 242, 255, 0.1); border-color: var(--primary); transform: scale(1.05); }
 
-        .glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%);
-            filter: blur(120px);
-            z-index: -1;
-        }
+        /* Menü Katmanı */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 100; overflow-y: auto; padding-top: 50px; }
+        .close-btn { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; cursor: pointer; color: var(--primary); }
 
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: bold;
-            background: linear-gradient(to right, #00f2ff, #7000ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
-            margin-bottom: 40px;
-        }
+        /* Script Kartı */
+        .script-menu { display: flex; justify-content: center; gap: 30px; width: 90%; }
+        .script-card { background: #111; border: 1px solid #222; border-radius: 15px; overflow: hidden; transition: 0.3s; cursor: pointer; width: 300px; }
+        .script-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+        .script-card img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #222; }
+        .script-card h3 { margin: 15px; font-family: 'Orbitron'; font-size: 1.1rem; color: var(--primary); }
 
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .nav-btn {
-            width: 250px;
-            padding: 15px;
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            background: rgba(255, 255, 255, 0.03);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-        }
-
-        .nav-btn:hover {
-            background: rgba(0, 242, 255, 0.1);
-            border-color: #00f2ff;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .nav-btn.alt {
-            border-color: rgba(112, 0, 255, 0.3);
-        }
-
-        .nav-btn.alt:hover {
-            border-color: #7000ff;
-            box-shadow: 0 0 20px rgba(112, 0, 255, 0.2);
-        }
+        /* Detay Sayfası */
+        .detail-page { display: none; width: 90%; max-width: 800px; text-align: left; background: #0c0c14; padding: 30px; border-radius: 20px; border: 1px solid #222; }
+        .code-box { background: #000; padding: 20px; border-radius: 10px; border: 1px solid #333; font-family: 'Courier New', monospace; color: #00ff88; margin-top: 20px; overflow-x: auto; white-space: pre-wrap; font-size: 0.85rem; }
+        .copy-btn { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-family: 'Orbitron'; }
     </style>
 </head>
 <body>
 
     <div class="glow"></div>
 
-    <div>
+    <div id="main-page">
         <div class="logo">KSCRIPT.GG</div>
-        
         <div class="btn-container">
-            <a href="#" class="nav-btn">SCRIPTS</a>
-            
-            <a href="https://www.mediafire.com/file/w0oiiip3vqril0i/Xeno-v1.3.25b2.exe/file" target="_blank" class="nav-btn alt">EXECUTOR</a>
+            <div class="nav-btn" onclick="openMenu()">SCRIPTS</div>
+            <a href="https://www.mediafire.com/file/w0oiiip3vqril0i/Xeno-v1.3.25b2.exe/file" target="_blank" class="nav-btn" style="border-color: var(--secondary);">EXECUTOR</a>
         </div>
     </div>
 
+    <div id="script-overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <h2 style="font-family:'Orbitron'; color:var(--primary); margin-bottom:40px; letter-spacing:3px;">AVAILABLE SCRIPTS</h2>
+        
+        <div id="menu-list" class="script-menu">
+            <div class="script-card" onclick="openDetail('universal')">
+                <img src="https://wallpapercave.com/wp/wp10502120.jpg" alt="Universal Script">
+                <h3>Universal Hub</h3>
+                <p style="color:#666; font-size:0.8rem; margin: 0 15px 15px 15px;">Tüm oyunlarda geçerli genel özellikler.</p>
+            </div>
+        </div>
+
+        <div id="detail-area" class="detail-page">
+            <button onclick="backToMenu()" style="background:none; border:1px solid #444; color:#888; cursor:pointer; padding:8px 20px; border-radius:5px; margin-bottom:20px; transition:0.3s;">← Geri Dön</button>
+            <h1 id="detay-baslik" style="font-family:'Orbitron'; color:var(--primary); margin:0;"></h1>
+            <p id="detay-aciklama" style="color:#aaa; line-height:1.6; margin-top:15px;"></p>
+            <div class="code-box">
+                <code id="script-kod"></code>
+            </div>
+            <button class="copy-btn" onclick="copyCode()">KOPYALA VE OYUNA YAPIŞTIR</button>
+        </div>
+    </div>
+
+    <script>
+        function openMenu() { document.getElementById('script-overlay').style.display = 'flex'; }
+        function closeMenu() { 
+            document.getElementById('script-overlay').style.display = 'none';
+            backToMenu();
+        }
+
+        const scripts = {
+            universal: {
+                title: "Universal Script Hub",
+                desc: "Bu script neredeyse tüm Roblox oyunlarında çalışır. İçerisinde ESP, Aimbot, Speed Hack ve Fly gibi temel özellikler bulunur. Admin komutlarını kullanmanızı sağlar.",
+                code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()'
+            }
+        };
+
+        function openDetail(key) {
+            document.getElementById('menu-list').style.display = 'none';
+            document.getElementById('detail-area').style.display = 'block';
+            document.getElementById('detay-baslik').innerText = scripts[key].title;
+            document.getElementById('detay-aciklama').innerText = scripts[key].desc;
+            document.getElementById('script-kod').innerText = scripts[key].code;
+        }
+
+        function backToMenu() {
+            document.getElementById('menu-list').style.display = 'flex';
+            document.getElementById('detail-area').style.display = 'none';
+        }
+
+        function copyCode() {
+            const code = document.getElementById('script-kod').innerText;
+            navigator.clipboard.writeText(code);
+            alert("Script başarıyla kopyalandı! Artık Executor'ına yapıştırabilirsin.");
+        }
+    </script>
 </body>
 </html>
