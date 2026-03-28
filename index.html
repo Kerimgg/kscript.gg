@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KScript.gg | Elite Scripting Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300&display=swap" rel="stylesheet">
+    <title>KScript.gg | Elite Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #05050a;
@@ -19,61 +19,63 @@
             overflow: hidden;
         }
 
-        /* Arka planda yavaşça dönen bir ışık efekti */
         .glow {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, rgba(112, 0, 255, 0.05) 100%);
-            filter: blur(80px);
-            animation: move 10s infinite alternate;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.05) 100%);
+            filter: blur(120px);
             z-index: -1;
-        }
-
-        @keyframes move {
-            from { transform: translate(-50%, -50%); }
-            to { transform: translate(10%, 20%); }
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: bold;
             background: linear-gradient(to right, #00f2ff, #7000ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+            margin-bottom: 40px;
         }
 
-        .slogan {
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            color: #888;
-            text-transform: uppercase;
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
-        .coming-soon {
-            margin-top: 40px;
-            padding: 10px 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            display: inline-block;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: #00f2ff;
-        }
-
-        .discord-btn {
-            margin-top: 30px;
-            display: block;
+        .nav-btn {
+            width: 250px;
+            padding: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            background: rgba(255, 255, 255, 0.03);
             color: white;
             text-decoration: none;
-            opacity: 0.6;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
             transition: 0.3s;
+            backdrop-filter: blur(5px);
         }
 
-        .discord-btn:hover { opacity: 1; color: #5865F2; }
+        .nav-btn:hover {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: #00f2ff;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            transform: scale(1.05);
+        }
 
+        .nav-btn.alt {
+            border-color: rgba(112, 0, 255, 0.3);
+        }
+
+        .nav-btn.alt:hover {
+            border-color: #7000ff;
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -82,13 +84,12 @@
 
     <div>
         <div class="logo">KSCRIPT.GG</div>
-        <div class="slogan">Next Generation Experience</div>
         
-        <div class="coming-soon">
-            🚀 Sistemler Hazırlanıyor...
+        <div class="btn-container">
+            <a href="#" class="nav-btn">SCRIPTS</a>
+            
+            <a href="#" class="nav-btn alt">EXECUTOR</a>
         </div>
-
-        <a href="#" class="discord-btn">Join Our Discord</a>
     </div>
 
 </body>
